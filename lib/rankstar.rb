@@ -9,7 +9,7 @@ class Rankstar
     options = {:res_per_page => 100, :limit => 100}
     options.merge!(args[0])
 
-    keyword.gsub!(/\s/, '+')
+    keyword = CGI.escape(keyword)
     request_url, results_selector, cite_selector = prepare_for(engine, keyword, options[:res_per_page])
     fetch_the_rank(request_url, results_selector, cite_selector, url, options[:limit], options[:res_per_page])
   end
